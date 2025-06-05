@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width"/>
 		<meta name='author' content='Maxim Chubarov'/>
 		<meta name='description' content='Система Персонального Электронного Документооборота для сотрудников АО "Транснефть-Прикамье"'/>
-		<title>СПЭД</title>
+		<title>Подача документов</title>
 		<link rel='shortcut icon' href="{{ url_for('static', path='/my_icon.png') }}" type='image/x-icon' />
 		<link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" />
 	</head>
@@ -31,52 +31,44 @@
 		</header>
 		<nav>
 			<ul>
-				<li><a href="{{ url_for('get_submit_docs_page') }}">Подача документов</a></li>
+				<li><a href="{{ url_for('get_index') }}">На главную</a></li>
 				<li><a href="{{ url_for('get_contacts_page') }}">Контакты</a></li>
 				<li><a href="{{ url_for('get_certs_page') }}">Мои удостоверения</a></li>
 				<li><a href="{{ url_for('get_exit_page') }}">Выйти</a></li>
 			</ul>
 		</nav>
 		<main>
-			<article>
-				<h2> Уважаемый сотрудник, </h2>
-				
-				<p>Добро пожаловать в систему персонального электронного документооборота (СПЭД) работников АО "Транснефть-Прикамье"</p>
-				<p>Данный сайт предоставляет возможность работникам подавать заявления онлайн
-				напрямую получателю без необходимости задействования в этом процессе третьих
-				лиц, что снижает затраты на бумагу и разгружает непосредственного руководителя
-				от дополнительной бюррократии.</p>
-				<p>Помимо подачи заявлений (и др. документов) на сайте имеется раздел с контактами
-				лиц, с которыми Вы можете связаться и узнать ответы на все
-				интересующие Вас вопросы.</p>
-				<p>Также Вы можете загрузить свои удостоверения в соответствующем разделе, что
-				облегчит будущий поиск и организует работу с ними удобным образом.</p>
-				
-				
-				<h2> Разделы сайта </h2>
-				<p> Ниже представлена краткая информация о разделах сайта.</p>
-				<ul>
-					<li>Подача документов - раздел с возможностью подачи заявлений онлайн;</li>
-					<li>Контакты - раздел с контактными данными компетентных лиц;</li>
-					<li>Мои удостоверения - раздел с возможностью загрузки и скачивания удостоверений;</li>
-					<li>Выйти - выход из учетной записи.</li>
-				</ul>
+		<form>
+			<fieldset>
+				<legend><p>Выберите бланк по наименованию заявления</p></legend>
+				<p>
+					<label for="sympathy">Бланк:</label>
+					<select id="sympathy" name="sympathy">
+					  <option value="fireness_blank">Заявление на увольнение</option>
+					  <option value="payement_blank">Заявление на выплату</option>
+					  <option value="free_day_blank">Заявление на НВО</option>
+					  <option value="vacation_blank">Заявление на отпуск</option>
+					</select>
+				</p>
 
-			</article>
+			</fieldset>
+			<p class='button'><button type="submit">Скачать</button></p>
+		</form>
+		<form>
+			<fieldset>
+				<legend><p>Загрузите Ваше заявление</p></legend>
+				<p>
+					<label for="upload_file">Разрешенные форматы: .docx, .pdf</label>
+					<input type="file" id="upload_file" name="file" accept='.pdf, .docx' />
+				</p>
+				
+			</fieldset>
+			<p class='button'><button type="submit">Отправить</button></p>
+		</form>
 		</main>
 		<footer>
-			<p>
-				<a class='footer_first_a' href='тут будет ссылка'>Официальный сайт ПАО "Транснефть"</a>
-				<span class='footer_first_span'>
-					<a class='vk_link' href='тут будет ссылка'>Официальная группа ПАО "Транснефть" ВКонтакте</a>
-				</span>
-			</p>
-			<p>
-				<a href='тут будет ссылка'>Официальный сайт АО "Транснефть-Прикамье"</a>
-				<span>
-					<a class='vk_link' href='тут будет ссылка'>Официальная группа АО "Транснефть-Прикамье" ВКонтакте</a>
-				</span>
-			</p>
+			<p><a class='footer_first_a' href='тут будет ссылка'>Официальный сайт ПАО "Транснефть"</a><span class='footer_first_span'><a class='vk_link' href='тут будет ссылка'>Официальная группа ПАО "Транснефть" ВКонтакте</a></span></p>
+			<p><a href='тут будет ссылка'>Официальный сайт АО "Транснефть-Прикамье"</a><span><a class='vk_link' href='тут будет ссылка'>Официальная группа АО "Транснефть-Прикамье" ВКонтакте</a></span></p>
 		</footer>
 	</body>
 </html>

@@ -4,19 +4,15 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width"/>
 		<meta name='author' content='Maxim Chubarov'/>
-		<meta name='description' content='У меня есть два кота - Марсик и Барсик. Барсику 14 лет, а Марсику 7 месяцев. Вот так вот.'/>
+		<meta name='description' content='Система Персонального Электронного Документооборота для сотрудников АО "Транснефть-Прикамье"'/>
 		<title>СПЭД Авторизация</title>
-		<link rel='shortcut icon' href='../my_icon.png' type='image/x-icon' />
-		<link 
-		href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One'
-		rel='stylesheer'
-		type='text/css'/>
-		<link rel="stylesheet" href="oauth.css" />
+		<link rel='shortcut icon' href="{{ url_for('static', path='/my_icon.png') }}" type='image/x-icon' />
+		<link rel="stylesheet" href="{{ url_for('static', path='/oauth_page/oauth.css') }}" />
 	</head>
 	<body>
 		<form>
 			<header>
-			<img src='../my_icon.png'></img>
+			<img src="{{ url_for('static', path='/my_icon.png') }}"></img>
 			<h1>Авторизация в СПЭД</h1>
 			</header>
 			<fieldset>

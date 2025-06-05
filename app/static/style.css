@@ -143,7 +143,36 @@ p[class='button'] {
 	text-align:center;
 }
 
+/* || contacts page layout */
+
+.person {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background-color: white;
+	border: 1px solid gray;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+.description {
+	flex: 0.9;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8px;
+}
+
+.description p {
+	border-bottom: 1px solid gray;
+}
+
+.person img {
+	max-width: 200px;
+}
+
+
 /*Мобильная версия страницы*/
+
 @media screen and (max-width:875px){
     main {
         width: 100%;
@@ -200,6 +229,14 @@ p[class='button'] {
 	.footer_first_span {
 		margin-right: 38px;
 	}
+	.description p {
+		font-size: 1.3rem;
+	}
+	
+	.description {
+		display: block;
+	}
+
 {
 
 @media screen and (max-width:450px){

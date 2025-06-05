@@ -65,6 +65,40 @@ button {
 	width: 10em;
 }
 
+/* || suc oauth layout */
+
+.suc_body {
+	margin-top: 35vh;
+}
+
+.suc_img {
+	margin-right: 15px;
+}
+
+.suc_p {
+	margin-top:10px;
+    margin-bottom:0px;
+}
+
+a {
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color:red;
+}
+
+a:active {
+	color:#ce3030;
+}
+
+.suc_header {
+	border-bottom: 1px solid gray;
+}
+
+
 /* Выравнивание полей табельного и пароля */
 input[id='tab_number']{
 	margin-left:20px;
