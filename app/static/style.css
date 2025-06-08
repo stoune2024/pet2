@@ -82,6 +82,7 @@ nav li {
 article {
 	border-radius: 10px;
 	padding: 2%;
+	min-height: 100vh;
 }
 
 /* || main layout */
@@ -127,6 +128,7 @@ form {
 	border-radius: 10px;
 	background-color: white;
 	margin-bottom: 10px;
+	min-height: 100vh;
 }
 
 fieldset {

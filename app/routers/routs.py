@@ -1,13 +1,18 @@
-from fastapi import APIRouter, Request, status, Depends
+from fastapi import APIRouter, Request, status, Depends, Form, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from typing import Annotated
+from sqlmodel import SQLModel, Field
 
 from .safety import TokenData, verify_token
 
 router = APIRouter(tags=['Ручки'])
 
 templates = Jinja2Templates(directory=['templates', 'app/templates', '../app/templates'])
+
+
+class BlankData(SQLModel):
+    blank_name: str | None = Field(default=None)
 
 
 @router.get('/')
@@ -75,3 +80,28 @@ async def get_exit_page(
     response = templates.TemplateResponse(request=request, name='log_out.html')
     response.delete_cookie(key='access-token')
     return response
+
+
+@router.post('/submit_nvo')
+async def get_submit_nvo_page(
+        request: Request,
+        data: Annotated[BlankData, Form()],
+):
+    # validated_data = BlankData.model_validate(data)
+    match data.blank_name:
+        case "free_day_blank":
+            return templates.TemplateResponse(request=request, name='submit_nvo.html')
+        case "fireness_blank":
+            return {"message":"sudauds"}
+        case "payment_blank":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not find user",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        case "vacation_blank":
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Could not find user",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
