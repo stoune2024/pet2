@@ -1,7 +1,7 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from ..config import settings
+from app.config import settings
 
 """
 

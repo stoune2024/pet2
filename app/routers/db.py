@@ -27,6 +27,7 @@ class UserBase(SQLModel):
 
 
 class UserTable(UserBase, table=True):
+    """ Таблица с информацией о сотрудниках """
     id: int | None = Field(default=None, primary_key=True)
     username: str = Field(unique=True)
     hashed_password: str
@@ -44,6 +45,18 @@ class UserCreate(UserBase):
 class UserUpdate(UserBase):
     username: str | None = None
     password: str | None = None
+
+
+class NvoTable(SQLModel, table=True):
+    """ Таблица с данными о заявлениях на НВО от работников """
+    id: int | None = Field(default=None, primary_key=True)
+    first_name: str
+    second_name: str
+    third_name: str
+    position: str
+    tab_no: int = Field(unique=True)
+    shift_worked: datetime.date
+    day_off: datetime.date
 
 
 engine = create_engine(f"postgresql+psycopg2://"

@@ -4,7 +4,9 @@ from fastapi.responses import RedirectResponse
 from typing import Annotated
 from sqlmodel import SQLModel, Field
 
+
 from .safety import TokenData, verify_token
+from .db import SessionDep, NvoTable
 
 router = APIRouter(tags=['Ручки'])
 
@@ -82,26 +84,34 @@ async def get_exit_page(
     return response
 
 
-@router.post('/submit_nvo')
-async def get_submit_nvo_page(
+@router.post('/submit/docs')
+async def get_submit_docs_page(
         request: Request,
         data: Annotated[BlankData, Form()],
+        user_token: Annotated[TokenData, Depends(verify_token)],
 ):
-    # validated_data = BlankData.model_validate(data)
-    match data.blank_name:
-        case "free_day_blank":
-            return templates.TemplateResponse(request=request, name='submit_nvo.html')
-        case "fireness_blank":
-            return {"message":"sudauds"}
-        case "payment_blank":
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not find user",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-        case "vacation_blank":
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not find user",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
+    if user_token:
+        match data.blank_name:
+            case "free_day_blank":
+                return templates.TemplateResponse(request=request, name='submit_nvo.html')
+            case "fireness_blank":
+                return {"message":"заявление об увольнении"}
+            case "payement_blank":
+                return {"message":"заявление о выплате"}
+            case "vacation_blank":
+                return {"message":"заявление на отпуск"}
+
+
+
+@router.post('/submit/docs/nvo')
+async def submit_nvo_blank(
+        user_token: Annotated[TokenData, Depends(verify_token)],
+        session: SessionDep,
+        nvo_blank: Annotated[NvoTable, Form()]
+):
+    """ Эндпоинт добавления информации о заявлениях на НВО от работников """
+    if user_token:
+        session.add(nvo_blank)
+        session.commit()
+        session.refresh(nvo_blank)
+        return {"message":"blank has been submitted!"}
